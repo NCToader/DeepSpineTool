@@ -229,8 +229,7 @@ class UnetEvaluator():
 
     @property
     def prediction(self):
-        if self._pred is None: return None
-        return np.rollaxis(self._pred, -1, 0)
+        return self._pred
 
     # =============================================================================
     #     #!Todo: 1. En los recores de la imagen deberíamos coger le tamaño minimo
