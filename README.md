@@ -39,7 +39,7 @@ After the previous steps, folder structure should be:
 ## Usage
 To present our application functionality, we provide a sample project. It can be downloaded from: https://bit.ly/2WlCiFc (`sample.scn`) 
 
-To try our application:
+#### Running the application
 * To start the tool, use the following command (if using the executable: Open `DeepSpineTool.exe`):
     > python main.py
 
