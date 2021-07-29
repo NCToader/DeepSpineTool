@@ -1,6 +1,6 @@
 import vtk
 from PyQt5 import Qt
-from vtk.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
+from vtkmodules.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
 
 from app.core.model import scene as SC
 from app.plugins.model.meshNode.meshNode import MeshNode

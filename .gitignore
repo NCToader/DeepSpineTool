@@ -5,3 +5,6 @@ __pycache__/
 app/plugins/utils/image/segmentation/confocalNeuro/tf_model*
 qttool.log
 models
+build*
+dist
+main.spec
