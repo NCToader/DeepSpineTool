@@ -1,0 +1,82 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Apr 12 15:11:08 2019
+
+@author: Marcos
+"""
+import numpy as np
+from inspect import isroutine
+
+
+class GenericObject():
+    def __init__(self, **kwargs):
+        # super(GenericObject, self).__init__()
+        self.__dict__.update(**kwargs)
+
+
+class ObjPool():
+    def __init__(self, obj, objInc=1, *args, **kwargs):
+        self._args = args
+        self._kwargs = kwargs
+        self._obj = obj
+        self._objList = []
+        self._objInc = objInc
+
+        self._incPool()
+
+    def incPool(self):
+        self._objList += [self._obj(*self._args, **self._kwargs)] * self._objInc
+
+    def getObj(self):
+        if len(self._objList) > 0:
+            return self._objList.pop()
+        else:
+            self._objList += [] * self.objInc
+            return self._objList.pop()
+
+    def releaseObj(self, obj):
+        self._objList.append(obj)
+
+
+# devuelve los atributos, quitando protegidos
+# vars(o) ---> [n for n in vars(o)]
+# o.__dict__  ---> [n for n in o.__dict__]
+def getAttribNames(o,
+                   showFunc='name',
+                   showNone=False,
+                   showPrivate=False,
+                   showRoutnines=False,
+                   shownMagicMethods=False):
+    if showFunc == 'type':
+        showf = lambda o, n: (n, type(getattr(o, n)).__name__)
+    elif showFunc == 'val':
+        showf = lambda o, n: (n, getattr(o, n))
+    elif showFunc == 'valAndType':
+        showf = lambda o, n: (n, getattr(o, n), type(getattr(o, n)).__name__)
+    else:
+        showf = lambda o, n: n
+
+    condf = lambda o, n: not any(np.logical_or(
+        [
+            getattr(o, n) is None,
+            n[0] == '_',
+            isroutine(getattr(o, n)),
+            n.startswith('__') and n.endswith('__')
+        ], [
+            showNone,
+            showPrivate,
+            showRoutnines,
+            shownMagicMethods
+        ]))
+
+    return [showf(o, n) for n in dir(o) if condf(o, n)]
+
+
+def isIterable(obj):
+    'Indica si es una lista o una tupla'
+    return isinstance(obj, list) or isinstance(obj, tuple)
+#    return isinstance(obj, (list, tuple))
+
+
+
+

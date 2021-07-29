@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/Icons">
+        <file alias="node">Icons/node.jpg</file>
+        <file alias="tree">Icons/tree.png</file>
+        <file alias="meshNode">Icons/meshNode.png</file>
+    </qresource>
+</RCC>

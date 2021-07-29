@@ -1,0 +1,854 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+    <class>image3Toolbar_widget</class>
+    <widget class="QWidget" name="image3Toolbar_widget">
+        <property name="enabled">
+            <bool>true</bool>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>584</width>
+                <height>146</height>
+            </rect>
+        </property>
+        <property name="windowTitle">
+            <string>Form</string>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_11">
+            <property name="spacing">
+                <number>0</number>
+            </property>
+            <property name="leftMargin">
+                <number>0</number>
+            </property>
+            <property name="topMargin">
+                <number>0</number>
+            </property>
+            <property name="rightMargin">
+                <number>0</number>
+            </property>
+            <property name="bottomMargin">
+                <number>0</number>
+            </property>
+            <item>
+                <widget class="QWidget" name="vertical_widget" native="true">
+                    <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <layout class="QHBoxLayout" name="horizontalLayout_4">
+                        <property name="spacing">
+                            <number>0</number>
+                        </property>
+                        <property name="leftMargin">
+                            <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                            <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                            <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                            <number>0</number>
+                        </property>
+                        <item>
+                            <widget class="QWidget" name="verticalButtons_widget" native="true">
+                                <property name="sizePolicy">
+                                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <layout class="QVBoxLayout" name="verticalLayout_4">
+                                    <property name="spacing">
+                                        <number>3</number>
+                                    </property>
+                                    <item>
+                                        <widget class="QPushButton" name="verticalShowAll_pushButton">
+                                            <property name="text">
+                                                <string>Show all</string>
+                                            </property>
+                                        </widget>
+                                    </item>
+                                    <item>
+                                        <widget class="QPushButton" name="verticalZoomToData_pushButton">
+                                            <property name="text">
+                                                <string>Zoom to Data</string>
+                                            </property>
+                                        </widget>
+                                    </item>
+                                    <item>
+                                        <widget class="QWidget" name="verticalPlaneSelector_widget" native="true">
+                                            <property name="sizePolicy">
+                                                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                                                    <horstretch>0</horstretch>
+                                                    <verstretch>0</verstretch>
+                                                </sizepolicy>
+                                            </property>
+                                            <layout class="QHBoxLayout" name="horizontalLayout_7">
+                                                <property name="spacing">
+                                                    <number>0</number>
+                                                </property>
+                                                <property name="leftMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <property name="topMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <property name="rightMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <property name="bottomMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <item>
+                                                    <widget class="QToolButton" name="verticalPlaneXY_toolButton">
+                                                        <property name="text">
+                                                            <string>XY</string>
+                                                        </property>
+                                                        <property name="iconSize">
+                                                            <size>
+                                                                <width>20</width>
+                                                                <height>20</height>
+                                                            </size>
+                                                        </property>
+                                                        <property name="checkable">
+                                                            <bool>true</bool>
+                                                        </property>
+                                                        <property name="checked">
+                                                            <bool>true</bool>
+                                                        </property>
+                                                        <property name="autoExclusive">
+                                                            <bool>true</bool>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                                <item>
+                                                    <spacer name="spacer_5">
+                                                        <property name="orientation">
+                                                            <enum>Qt::Horizontal</enum>
+                                                        </property>
+                                                        <property name="sizeHint" stdset="0">
+                                                            <size>
+                                                                <width>0</width>
+                                                                <height>0</height>
+                                                            </size>
+                                                        </property>
+                                                    </spacer>
+                                                </item>
+                                                <item>
+                                                    <widget class="QToolButton" name="verticalPlaneYZ_toolButton">
+                                                        <property name="text">
+                                                            <string>YZ</string>
+                                                        </property>
+                                                        <property name="checkable">
+                                                            <bool>true</bool>
+                                                        </property>
+                                                        <property name="autoExclusive">
+                                                            <bool>true</bool>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                                <item>
+                                                    <spacer name="spacer_6">
+                                                        <property name="orientation">
+                                                            <enum>Qt::Horizontal</enum>
+                                                        </property>
+                                                        <property name="sizeHint" stdset="0">
+                                                            <size>
+                                                                <width>0</width>
+                                                                <height>0</height>
+                                                            </size>
+                                                        </property>
+                                                    </spacer>
+                                                </item>
+                                                <item>
+                                                    <widget class="QToolButton" name="verticalPlaneZX_toolButton">
+                                                        <property name="text">
+                                                            <string>ZX</string>
+                                                        </property>
+                                                        <property name="checkable">
+                                                            <bool>true</bool>
+                                                        </property>
+                                                        <property name="autoExclusive">
+                                                            <bool>true</bool>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </widget>
+                                    </item>
+                                    <item>
+                                        <widget class="QWidget" name="verticalMP_widget" native="true">
+                                            <property name="sizePolicy">
+                                                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                                                    <horstretch>0</horstretch>
+                                                    <verstretch>0</verstretch>
+                                                </sizepolicy>
+                                            </property>
+                                            <layout class="QHBoxLayout" name="horizontalLayout_2">
+                                                <property name="spacing">
+                                                    <number>0</number>
+                                                </property>
+                                                <property name="leftMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <property name="topMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <property name="rightMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <property name="bottomMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <item>
+                                                    <widget class="QCheckBox" name="verticalMP_checkBox">
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <property name="text">
+                                                            <string/>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                                <item>
+                                                    <widget class="QWidget" name="verticalMPLabel_widget" native="true">
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <layout class="QVBoxLayout" name="verticalLayout">
+                                                            <property name="spacing">
+                                                                <number>0</number>
+                                                            </property>
+                                                            <property name="leftMargin">
+                                                                <number>5</number>
+                                                            </property>
+                                                            <property name="topMargin">
+                                                                <number>0</number>
+                                                            </property>
+                                                            <property name="rightMargin">
+                                                                <number>0</number>
+                                                            </property>
+                                                            <property name="bottomMargin">
+                                                                <number>0</number>
+                                                            </property>
+                                                            <item>
+                                                                <widget class="QLabel" name="verticalMP_label_1">
+                                                                    <property name="sizePolicy">
+                                                                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                                                                            <horstretch>0</horstretch>
+                                                                            <verstretch>0</verstretch>
+                                                                        </sizepolicy>
+                                                                    </property>
+                                                                    <property name="text">
+                                                                        <string>Maximum</string>
+                                                                    </property>
+                                                                    <property name="buddy">
+                                                                        <cstring>verticalMP_checkBox</cstring>
+                                                                    </property>
+                                                                </widget>
+                                                            </item>
+                                                            <item>
+                                                                <widget class="QLabel" name="verticalMP_label_2">
+                                                                    <property name="sizePolicy">
+                                                                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                                                                            <horstretch>0</horstretch>
+                                                                            <verstretch>0</verstretch>
+                                                                        </sizepolicy>
+                                                                    </property>
+                                                                    <property name="text">
+                                                                        <string>Projection</string>
+                                                                    </property>
+                                                                    <property name="buddy">
+                                                                        <cstring>verticalMP_checkBox</cstring>
+                                                                    </property>
+                                                                </widget>
+                                                            </item>
+                                                        </layout>
+                                                    </widget>
+                                                </item>
+                                                <item>
+                                                    <spacer name="verticalMP_spacer">
+                                                        <property name="orientation">
+                                                            <enum>Qt::Horizontal</enum>
+                                                        </property>
+                                                        <property name="sizeHint" stdset="0">
+                                                            <size>
+                                                                <width>0</width>
+                                                                <height>0</height>
+                                                            </size>
+                                                        </property>
+                                                    </spacer>
+                                                </item>
+                                            </layout>
+                                        </widget>
+                                    </item>
+                                    <item>
+                                        <widget class="QWidget" name="verticalResize_widget" native="true"/>
+                                    </item>
+                                </layout>
+                            </widget>
+                        </item>
+                        <item>
+                            <widget class="QWidget" name="verticalSlider_widget" native="true">
+                                <property name="sizePolicy">
+                                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <layout class="QVBoxLayout" name="verticalLayout_5">
+                                    <property name="spacing">
+                                        <number>0</number>
+                                    </property>
+                                    <item>
+                                        <widget class="QSlider" name="verticalZ_slider">
+                                            <property name="orientation">
+                                                <enum>Qt::Vertical</enum>
+                                            </property>
+                                        </widget>
+                                    </item>
+                                    <item>
+                                        <spacer name="spacer_4">
+                                            <property name="orientation">
+                                                <enum>Qt::Vertical</enum>
+                                            </property>
+                                            <property name="sizeType">
+                                                <enum>QSizePolicy::Fixed</enum>
+                                            </property>
+                                            <property name="sizeHint" stdset="0">
+                                                <size>
+                                                    <width>0</width>
+                                                    <height>7</height>
+                                                </size>
+                                            </property>
+                                        </spacer>
+                                    </item>
+                                    <item>
+                                        <widget class="QLabel" name="verticalZ_label">
+                                            <property name="sizePolicy">
+                                                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                                                    <horstretch>0</horstretch>
+                                                    <verstretch>0</verstretch>
+                                                </sizepolicy>
+                                            </property>
+                                            <property name="frameShape">
+                                                <enum>QFrame::WinPanel</enum>
+                                            </property>
+                                            <property name="frameShadow">
+                                                <enum>QFrame::Sunken</enum>
+                                            </property>
+                                            <property name="text">
+                                                <string>&quot; &quot;</string>
+                                            </property>
+                                            <property name="buddy">
+                                                <cstring>verticalZ_slider</cstring>
+                                            </property>
+                                        </widget>
+                                    </item>
+                                </layout>
+                            </widget>
+                        </item>
+                    </layout>
+                </widget>
+            </item>
+            <item>
+                <widget class="QWidget" name="horizontal_widget" native="true">
+                    <property name="sizePolicy">
+                        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_6">
+                        <property name="spacing">
+                            <number>0</number>
+                        </property>
+                        <property name="leftMargin">
+                            <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                            <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                            <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                            <number>0</number>
+                        </property>
+                        <item>
+                            <widget class="QWidget" name="horizontalSlider_widget" native="true">
+                                <layout class="QHBoxLayout" name="horizontalLayout_8">
+                                    <property name="spacing">
+                                        <number>0</number>
+                                    </property>
+                                    <item>
+                                        <widget class="QSlider" name="horizontalZ_slider">
+                                            <property name="orientation">
+                                                <enum>Qt::Horizontal</enum>
+                                            </property>
+                                            <property name="tickPosition">
+                                                <enum>QSlider::NoTicks</enum>
+                                            </property>
+                                            <property name="tickInterval">
+                                                <number>50</number>
+                                            </property>
+                                        </widget>
+                                    </item>
+                                    <item>
+                                        <spacer name="spacer_3">
+                                            <property name="orientation">
+                                                <enum>Qt::Horizontal</enum>
+                                            </property>
+                                            <property name="sizeType">
+                                                <enum>QSizePolicy::Fixed</enum>
+                                            </property>
+                                            <property name="sizeHint" stdset="0">
+                                                <size>
+                                                    <width>5</width>
+                                                    <height>0</height>
+                                                </size>
+                                            </property>
+                                        </spacer>
+                                    </item>
+                                    <item>
+                                        <widget class="QLabel" name="horizontalZ_label">
+                                            <property name="sizePolicy">
+                                                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                                                    <horstretch>0</horstretch>
+                                                    <verstretch>0</verstretch>
+                                                </sizepolicy>
+                                            </property>
+                                            <property name="frameShape">
+                                                <enum>QFrame::WinPanel</enum>
+                                            </property>
+                                            <property name="frameShadow">
+                                                <enum>QFrame::Sunken</enum>
+                                            </property>
+                                            <property name="text">
+                                                <string>&quot; &quot;</string>
+                                            </property>
+                                            <property name="buddy">
+                                                <cstring>horizontalZ_slider</cstring>
+                                            </property>
+                                        </widget>
+                                    </item>
+                                </layout>
+                            </widget>
+                        </item>
+                        <item>
+                            <widget class="QWidget" name="horizontalButtons_widget" native="true">
+                                <layout class="QHBoxLayout" name="horizontalLayout_9">
+                                    <property name="spacing">
+                                        <number>0</number>
+                                    </property>
+                                    <item>
+                                        <widget class="QPushButton" name="horizontalShowAll_pushButton">
+                                            <property name="text">
+                                                <string>Show all</string>
+                                            </property>
+                                        </widget>
+                                    </item>
+                                    <item>
+                                        <widget class="QPushButton" name="horizontalZoomToData_pushButton">
+                                            <property name="text">
+                                                <string>Zoom to Data</string>
+                                            </property>
+                                        </widget>
+                                    </item>
+                                    <item>
+                                        <widget class="QWidget" name="horizontalPlaneSelector_widget" native="true">
+                                            <property name="sizePolicy">
+                                                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                                                    <horstretch>0</horstretch>
+                                                    <verstretch>0</verstretch>
+                                                </sizepolicy>
+                                            </property>
+                                            <layout class="QHBoxLayout" name="horizontalLayout_10">
+                                                <property name="spacing">
+                                                    <number>0</number>
+                                                </property>
+                                                <property name="leftMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <property name="topMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <property name="rightMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <property name="bottomMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <item>
+                                                    <spacer name="spacer_2">
+                                                        <property name="orientation">
+                                                            <enum>Qt::Horizontal</enum>
+                                                        </property>
+                                                        <property name="sizeType">
+                                                            <enum>QSizePolicy::Fixed</enum>
+                                                        </property>
+                                                        <property name="sizeHint" stdset="0">
+                                                            <size>
+                                                                <width>5</width>
+                                                                <height>0</height>
+                                                            </size>
+                                                        </property>
+                                                    </spacer>
+                                                </item>
+                                                <item>
+                                                    <widget class="QToolButton" name="horizontalPlaneXY_toolButton">
+                                                        <property name="text">
+                                                            <string>XY</string>
+                                                        </property>
+                                                        <property name="checkable">
+                                                            <bool>true</bool>
+                                                        </property>
+                                                        <property name="checked">
+                                                            <bool>true</bool>
+                                                        </property>
+                                                        <property name="autoExclusive">
+                                                            <bool>true</bool>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                                <item>
+                                                    <widget class="QToolButton" name="horizontalPlaneYZ_toolButton">
+                                                        <property name="text">
+                                                            <string>YZ</string>
+                                                        </property>
+                                                        <property name="checkable">
+                                                            <bool>true</bool>
+                                                        </property>
+                                                        <property name="autoExclusive">
+                                                            <bool>true</bool>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                                <item>
+                                                    <widget class="QToolButton" name="horizontalPlaneZX_toolButton">
+                                                        <property name="text">
+                                                            <string>ZX</string>
+                                                        </property>
+                                                        <property name="checkable">
+                                                            <bool>true</bool>
+                                                        </property>
+                                                        <property name="autoExclusive">
+                                                            <bool>true</bool>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                                <item>
+                                                    <spacer name="spacer_1">
+                                                        <property name="orientation">
+                                                            <enum>Qt::Horizontal</enum>
+                                                        </property>
+                                                        <property name="sizeType">
+                                                            <enum>QSizePolicy::Fixed</enum>
+                                                        </property>
+                                                        <property name="sizeHint" stdset="0">
+                                                            <size>
+                                                                <width>5</width>
+                                                                <height>0</height>
+                                                            </size>
+                                                        </property>
+                                                    </spacer>
+                                                </item>
+                                            </layout>
+                                        </widget>
+                                    </item>
+                                    <item>
+                                        <widget class="QWidget" name="horizontalMP_widget" native="true">
+                                            <property name="sizePolicy">
+                                                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                                                    <horstretch>0</horstretch>
+                                                    <verstretch>0</verstretch>
+                                                </sizepolicy>
+                                            </property>
+                                            <layout class="QHBoxLayout" name="horizontalLayout">
+                                                <property name="spacing">
+                                                    <number>5</number>
+                                                </property>
+                                                <property name="leftMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <property name="topMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <property name="rightMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <property name="bottomMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <item>
+                                                    <widget class="QCheckBox" name="horizontalMP_checkBox">
+                                                        <property name="sizePolicy">
+                                                            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                                                                <horstretch>0</horstretch>
+                                                                <verstretch>0</verstretch>
+                                                            </sizepolicy>
+                                                        </property>
+                                                        <property name="text">
+                                                            <string/>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                                <item>
+                                                    <widget class="QLabel" name="horizontalMP_label">
+                                                        <property name="text">
+                                                            <string>Maximum Projection</string>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </widget>
+                                    </item>
+                                </layout>
+                            </widget>
+                        </item>
+                    </layout>
+                </widget>
+            </item>
+        </layout>
+    </widget>
+    <resources/>
+    <connections>
+        <connection>
+            <sender>verticalMP_checkBox</sender>
+            <signal>toggled(bool)</signal>
+            <receiver>horizontalMP_checkBox</receiver>
+            <slot>setChecked(bool)</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>44</x>
+                    <y>121</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>575</x>
+                    <y>110</y>
+                </hint>
+            </hints>
+        </connection>
+        <connection>
+            <sender>horizontalMP_checkBox</sender>
+            <signal>toggled(bool)</signal>
+            <receiver>verticalMP_checkBox</receiver>
+            <slot>setChecked(bool)</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>646</x>
+                    <y>110</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>47</x>
+                    <y>121</y>
+                </hint>
+            </hints>
+        </connection>
+        <connection>
+            <sender>horizontalZ_slider</sender>
+            <signal>valueChanged(int)</signal>
+            <receiver>horizontalZ_label</receiver>
+            <slot>setNum(int)</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>567</x>
+                    <y>63</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>673</x>
+                    <y>60</y>
+                </hint>
+            </hints>
+        </connection>
+        <connection>
+            <sender>verticalZ_slider</sender>
+            <signal>valueChanged(int)</signal>
+            <receiver>verticalZ_label</receiver>
+            <slot>setNum(int)</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>183</x>
+                    <y>106</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>184</x>
+                    <y>146</y>
+                </hint>
+            </hints>
+        </connection>
+        <connection>
+            <sender>horizontalZ_slider</sender>
+            <signal>valueChanged(int)</signal>
+            <receiver>verticalZ_slider</receiver>
+            <slot>setValue(int)</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>341</x>
+                    <y>63</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>181</x>
+                    <y>22</y>
+                </hint>
+            </hints>
+        </connection>
+        <connection>
+            <sender>verticalZ_slider</sender>
+            <signal>valueChanged(int)</signal>
+            <receiver>horizontalZ_slider</receiver>
+            <slot>setValue(int)</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>183</x>
+                    <y>37</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>333</x>
+                    <y>63</y>
+                </hint>
+            </hints>
+        </connection>
+        <connection>
+            <sender>horizontalPlaneZX_toolButton</sender>
+            <signal>toggled(bool)</signal>
+            <receiver>verticalPlaneZX_toolButton</receiver>
+            <slot>setChecked(bool)</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>544</x>
+                    <y>111</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>139</x>
+                    <y>98</y>
+                </hint>
+            </hints>
+        </connection>
+        <connection>
+            <sender>verticalPlaneZX_toolButton</sender>
+            <signal>toggled(bool)</signal>
+            <receiver>horizontalPlaneZX_toolButton</receiver>
+            <slot>setChecked(bool)</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>137</x>
+                    <y>98</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>544</x>
+                    <y>111</y>
+                </hint>
+            </hints>
+        </connection>
+        <connection>
+            <sender>horizontalPlaneYZ_toolButton</sender>
+            <signal>toggled(bool)</signal>
+            <receiver>verticalPlaneYZ_toolButton</receiver>
+            <slot>setChecked(bool)</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>519</x>
+                    <y>111</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>84</x>
+                    <y>88</y>
+                </hint>
+            </hints>
+        </connection>
+        <connection>
+            <sender>verticalPlaneYZ_toolButton</sender>
+            <signal>toggled(bool)</signal>
+            <receiver>horizontalPlaneYZ_toolButton</receiver>
+            <slot>setChecked(bool)</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>81</x>
+                    <y>93</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>519</x>
+                    <y>111</y>
+                </hint>
+            </hints>
+        </connection>
+        <connection>
+            <sender>verticalPlaneXY_toolButton</sender>
+            <signal>toggled(bool)</signal>
+            <receiver>horizontalPlaneXY_toolButton</receiver>
+            <slot>setChecked(bool)</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>25</x>
+                    <y>89</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>494</x>
+                    <y>111</y>
+                </hint>
+            </hints>
+        </connection>
+        <connection>
+            <sender>horizontalPlaneXY_toolButton</sender>
+            <signal>toggled(bool)</signal>
+            <receiver>verticalPlaneXY_toolButton</receiver>
+            <slot>setChecked(bool)</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>494</x>
+                    <y>111</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>22</x>
+                    <y>94</y>
+                </hint>
+            </hints>
+        </connection>
+        <connection>
+            <sender>horizontalZ_slider</sender>
+            <signal>rangeChanged(int,int)</signal>
+            <receiver>verticalZ_slider</receiver>
+            <slot>setRange(int,int)</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>279</x>
+                    <y>60</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>167</x>
+                    <y>42</y>
+                </hint>
+            </hints>
+        </connection>
+        <connection>
+            <sender>verticalZ_slider</sender>
+            <signal>rangeChanged(int,int)</signal>
+            <receiver>horizontalZ_slider</receiver>
+            <slot>setRange(int,int)</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>170</x>
+                    <y>61</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>447</x>
+                    <y>56</y>
+                </hint>
+            </hints>
+        </connection>
+    </connections>
+</ui>

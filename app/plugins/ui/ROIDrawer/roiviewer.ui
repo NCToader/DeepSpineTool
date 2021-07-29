@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+    <class>ROIviewer</class>
+    <widget class="QWidget" name="ROIviewer">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>514</width>
+                <height>438</height>
+            </rect>
+        </property>
+        <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+            </sizepolicy>
+        </property>
+        <property name="windowTitle">
+            <string>ROI Viewer</string>
+        </property>
+        <widget class="QWidget" name="gridLayoutWidget">
+            <property name="geometry">
+                <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>511</width>
+                    <height>441</height>
+                </rect>
+            </property>
+            <layout class="QGridLayout" name="ROIgl" columnstretch="0">
+                <property name="sizeConstraint">
+                    <enum>QLayout::SetMinimumSize</enum>
+                </property>
+            </layout>
+        </widget>
+    </widget>
+    <resources/>
+    <connections/>
+</ui>

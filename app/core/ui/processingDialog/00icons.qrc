@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="icons">
+        <file alias="4">12.gif</file>
+        <file alias="7">Brain Cogs.gif</file>
+        <file alias="2">cd514331234507.564a1d2324e4e.gif</file>
+        <file alias="5">DisgustingSpiffyIguana-small.gif</file>
+        <file alias="1">icons-8-critical-thinking-100@2x.gif</file>
+        <file alias="8">metin-seven-metin-seven-3d-animated-gif-animation-gears-cogwheels.gif</file>
+        <file alias="3">moving_gears.gif</file>
+    </qresource>
+</RCC>

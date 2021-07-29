@@ -1,0 +1,7 @@
+.spyproject
+.idea
+__pycache__/
+*.py[cod]
+app/plugins/utils/image/segmentation/confocalNeuro/tf_model*
+qttool.log
+models

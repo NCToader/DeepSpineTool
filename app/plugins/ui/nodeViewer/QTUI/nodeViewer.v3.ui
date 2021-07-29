@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+    <class>nodeViewer_form</class>
+    <widget class="QWidget" name="nodeViewer_form">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>162</width>
+                <height>655</height>
+            </rect>
+        </property>
+        <property name="windowTitle">
+            <string>Form</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout">
+            <property name="sizeConstraint">
+                <enum>QLayout::SetMinimumSize</enum>
+            </property>
+            <item>
+                <layout class="QVBoxLayout" name="widgets_layout">
+                    <property name="sizeConstraint">
+                        <enum>QLayout::SetMinimumSize</enum>
+                    </property>
+                    <item>
+                        <layout class="QHBoxLayout" name="nodeType_layout">
+                            <property name="sizeConstraint">
+                                <enum>QLayout::SetDefaultConstraint</enum>
+                            </property>
+                            <item>
+                                <widget class="QLabel" name="label">
+                                    <property name="sizePolicy">
+                                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                    <property name="text">
+                                        <string>Node Type:</string>
+                                    </property>
+                                </widget>
+                            </item>
+                            <item>
+                                <widget class="QLineEdit" name="nodeType_lineEdit">
+                                    <property name="enabled">
+                                        <bool>true</bool>
+                                    </property>
+                                    <property name="text">
+                                        <string/>
+                                    </property>
+                                    <property name="frame">
+                                        <bool>true</bool>
+                                    </property>
+                                    <property name="readOnly">
+                                        <bool>true</bool>
+                                    </property>
+                                </widget>
+                            </item>
+                        </layout>
+                    </item>
+                    <item>
+                        <layout class="QHBoxLayout" name="localTransform_layout">
+                            <property name="sizeConstraint">
+                                <enum>QLayout::SetFixedSize</enum>
+                            </property>
+                            <item>
+                                <widget class="QLabel" name="label_3">
+                                    <property name="sizePolicy">
+                                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                    <property name="text">
+                                        <string>Local Transform:</string>
+                                    </property>
+                                </widget>
+                            </item>
+                            <item>
+                                <widget class="QWidget" name="localTransform_widget" native="true">
+                                    <property name="sizePolicy">
+                                        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                </widget>
+                            </item>
+                        </layout>
+                    </item>
+                    <item>
+                        <layout class="QHBoxLayout" name="globalTransform_layout">
+                            <property name="sizeConstraint">
+                                <enum>QLayout::SetMinimumSize</enum>
+                            </property>
+                            <item>
+                                <widget class="QLabel" name="label_4">
+                                    <property name="sizePolicy">
+                                        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                    <property name="text">
+                                        <string>Global Transform:</string>
+                                    </property>
+                                </widget>
+                            </item>
+                            <item>
+                                <widget class="QWidget" name="globalTransform_widget" native="true">
+                                    <property name="sizePolicy">
+                                        <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                </widget>
+                            </item>
+                        </layout>
+                    </item>
+                </layout>
+            </item>
+            <item>
+                <layout class="QHBoxLayout" name="freeSpace_layout">
+                    <item>
+                        <widget class="QWidget" name="widget" native="true"/>
+                    </item>
+                </layout>
+            </item>
+        </layout>
+    </widget>
+    <resources/>
+    <connections/>
+</ui>

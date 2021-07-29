@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+    <class>scaling_widget</class>
+    <widget class="QWidget" name="scaling_widget">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>351</width>
+                <height>326</height>
+            </rect>
+        </property>
+        <property name="windowTitle">
+            <string>Form</string>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+            <property name="spacing">
+                <number>0</number>
+            </property>
+            <item>
+                <widget class="QWidget" name="methods_widget" native="true">
+                    <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_2">
+                        <property name="spacing">
+                            <number>0</number>
+                        </property>
+                        <property name="leftMargin">
+                            <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                            <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                            <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                            <number>0</number>
+                        </property>
+                        <item>
+                            <widget class="QGroupBox" name="methods_groupBox">
+                                <property name="sizePolicy">
+                                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="title">
+                                    <string>Scaling</string>
+                                </property>
+                                <layout class="QVBoxLayout" name="verticalLayout">
+                                    <item>
+                                        <widget class="QRadioButton" name="none_radioButton">
+                                            <property name="text">
+                                                <string>None</string>
+                                            </property>
+                                            <property name="checked">
+                                                <bool>true</bool>
+                                            </property>
+                                        </widget>
+                                    </item>
+                                    <item>
+                                        <widget class="QRadioButton" name="normalization_radioButton">
+                                            <property name="text">
+                                                <string>Normalization</string>
+                                            </property>
+                                        </widget>
+                                    </item>
+                                    <item>
+                                        <widget class="QRadioButton" name="meanNormamalization_radioButton">
+                                            <property name="text">
+                                                <string>Mean normalization</string>
+                                            </property>
+                                        </widget>
+                                    </item>
+                                    <item>
+                                        <widget class="QRadioButton" name="standarization_radioButton">
+                                            <property name="text">
+                                                <string>Standardization</string>
+                                            </property>
+                                        </widget>
+                                    </item>
+                                </layout>
+                            </widget>
+                        </item>
+                        <item>
+                            <widget class="QWidget" name="_resize_widget1" native="true">
+                                <property name="sizePolicy">
+                                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                            </widget>
+                        </item>
+                    </layout>
+                </widget>
+            </item>
+            <item>
+                <spacer name="horizontalSpacer">
+                    <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>QSizePolicy::Fixed</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                        <size>
+                            <width>7</width>
+                            <height>0</height>
+                        </size>
+                    </property>
+                </spacer>
+            </item>
+            <item>
+                <widget class="QWidget" name="params_widget" native="true">
+                    <property name="sizePolicy">
+                        <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_3">
+                        <property name="leftMargin">
+                            <number>0</number>
+                        </property>
+                        <property name="topMargin">
+                            <number>0</number>
+                        </property>
+                        <property name="rightMargin">
+                            <number>0</number>
+                        </property>
+                        <property name="bottomMargin">
+                            <number>0</number>
+                        </property>
+                        <item>
+                            <widget class="QWidget" name="input_widget" native="true">
+                                <property name="sizePolicy">
+                                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <layout class="QVBoxLayout" name="verticalLayout_7">
+                                    <property name="leftMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <property name="topMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <property name="rightMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <property name="bottomMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <item>
+                                        <widget class="QWidget" name="inputRange_widget" native="true">
+                                            <property name="sizePolicy">
+                                                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                                    <horstretch>0</horstretch>
+                                                    <verstretch>0</verstretch>
+                                                </sizepolicy>
+                                            </property>
+                                            <layout class="QVBoxLayout" name="verticalLayout_9">
+                                                <property name="spacing">
+                                                    <number>0</number>
+                                                </property>
+                                                <property name="leftMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <property name="topMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <property name="rightMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <property name="bottomMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <item>
+                                                    <widget class="QCheckBox" name="selectInputRange_checkBox">
+                                                        <property name="text">
+                                                            <string>Select custom input range</string>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                                <item>
+                                                    <widget class="QWidget" name="customInputRange_widget"
+                                                            native="true">
+                                                        <layout class="QFormLayout" name="formLayout_2">
+                                                            <property name="verticalSpacing">
+                                                                <number>0</number>
+                                                            </property>
+                                                            <property name="leftMargin">
+                                                                <number>0</number>
+                                                            </property>
+                                                            <property name="topMargin">
+                                                                <number>0</number>
+                                                            </property>
+                                                            <property name="rightMargin">
+                                                                <number>0</number>
+                                                            </property>
+                                                            <property name="bottomMargin">
+                                                                <number>0</number>
+                                                            </property>
+                                                            <item row="0" column="0">
+                                                                <widget class="QLabel" name="minInputValue_label">
+                                                                    <property name="text">
+                                                                        <string>Min. value</string>
+                                                                    </property>
+                                                                </widget>
+                                                            </item>
+                                                            <item row="0" column="1">
+                                                                <widget class="QLineEdit"
+                                                                        name="minInputValue_lineEdit"/>
+                                                            </item>
+                                                            <item row="1" column="1">
+                                                                <widget class="QLineEdit"
+                                                                        name="maxInputValue_lineEdit"/>
+                                                            </item>
+                                                            <item row="1" column="0">
+                                                                <widget class="QLabel" name="maxInputValue_label">
+                                                                    <property name="text">
+                                                                        <string>Max. value</string>
+                                                                    </property>
+                                                                </widget>
+                                                            </item>
+                                                        </layout>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </widget>
+                                    </item>
+                                </layout>
+                            </widget>
+                        </item>
+                        <item>
+                            <widget class="QWidget" name="average_widget" native="true">
+                                <property name="sizePolicy">
+                                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <layout class="QVBoxLayout" name="verticalLayout_10">
+                                    <property name="spacing">
+                                        <number>0</number>
+                                    </property>
+                                    <property name="leftMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <property name="topMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <property name="rightMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <property name="bottomMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <item>
+                                        <widget class="QCheckBox" name="selectCustomAverage_checkBox">
+                                            <property name="text">
+                                                <string>Select custom average</string>
+                                            </property>
+                                        </widget>
+                                    </item>
+                                    <item>
+                                        <widget class="QWidget" name="customAverage_widget" native="true">
+                                            <layout class="QFormLayout" name="formLayout_3">
+                                                <property name="verticalSpacing">
+                                                    <number>0</number>
+                                                </property>
+                                                <property name="leftMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <property name="topMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <property name="rightMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <property name="bottomMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <item row="0" column="0">
+                                                    <widget class="QLabel" name="average_Value_label">
+                                                        <property name="text">
+                                                            <string>Average</string>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                                <item row="0" column="1">
+                                                    <widget class="QLineEdit" name="average_lineEdit"/>
+                                                </item>
+                                                <item row="1" column="1">
+                                                    <widget class="QLineEdit" name="stdDevValue_lineEdit"/>
+                                                </item>
+                                                <item row="1" column="0">
+                                                    <widget class="QLabel" name="stdDevValue_label">
+                                                        <property name="text">
+                                                            <string>Std. dev.</string>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </widget>
+                                    </item>
+                                </layout>
+                            </widget>
+                        </item>
+                        <item>
+                            <widget class="QWidget" name="output_widget" native="true">
+                                <property name="sizePolicy">
+                                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <layout class="QVBoxLayout" name="verticalLayout_5">
+                                    <property name="leftMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <property name="topMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <property name="rightMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <property name="bottomMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <item>
+                                        <widget class="QGroupBox" name="output_groupBox">
+                                            <property name="sizePolicy">
+                                                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                                                    <horstretch>0</horstretch>
+                                                    <verstretch>0</verstretch>
+                                                </sizepolicy>
+                                            </property>
+                                            <property name="title">
+                                                <string>Output</string>
+                                            </property>
+                                            <layout class="QVBoxLayout" name="verticalLayout_4">
+                                                <item>
+                                                    <widget class="QRadioButton" name="keepDataTypes_radioButton">
+                                                        <property name="text">
+                                                            <string>Keep image data type</string>
+                                                        </property>
+                                                        <property name="checked">
+                                                            <bool>true</bool>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                                <item>
+                                                    <widget class="QRadioButton" name="keepRange_radioButton">
+                                                        <property name="text">
+                                                            <string>Keep image range</string>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                                <item>
+                                                    <widget class="QRadioButton" name="convertToReal_radioButton">
+                                                        <property name="text">
+                                                            <string>Convert to float</string>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </widget>
+                                    </item>
+                                    <item>
+                                        <widget class="QWidget" name="outputRange_widget" native="true">
+                                            <property name="sizePolicy">
+                                                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                                                    <horstretch>0</horstretch>
+                                                    <verstretch>0</verstretch>
+                                                </sizepolicy>
+                                            </property>
+                                            <layout class="QVBoxLayout" name="verticalLayout_6">
+                                                <property name="spacing">
+                                                    <number>0</number>
+                                                </property>
+                                                <property name="leftMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <property name="topMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <property name="rightMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <property name="bottomMargin">
+                                                    <number>0</number>
+                                                </property>
+                                                <item>
+                                                    <widget class="QCheckBox" name="selectOuptutRange_checkBox">
+                                                        <property name="text">
+                                                            <string>Select custom output range</string>
+                                                        </property>
+                                                    </widget>
+                                                </item>
+                                                <item>
+                                                    <widget class="QWidget" name="customOutputRange_widget"
+                                                            native="true">
+                                                        <layout class="QFormLayout" name="formLayout">
+                                                            <property name="verticalSpacing">
+                                                                <number>0</number>
+                                                            </property>
+                                                            <property name="leftMargin">
+                                                                <number>0</number>
+                                                            </property>
+                                                            <property name="topMargin">
+                                                                <number>0</number>
+                                                            </property>
+                                                            <property name="rightMargin">
+                                                                <number>0</number>
+                                                            </property>
+                                                            <property name="bottomMargin">
+                                                                <number>0</number>
+                                                            </property>
+                                                            <item row="0" column="0">
+                                                                <widget class="QLabel" name="minOutputValue_label">
+                                                                    <property name="text">
+                                                                        <string>Min. value</string>
+                                                                    </property>
+                                                                </widget>
+                                                            </item>
+                                                            <item row="0" column="1">
+                                                                <widget class="QLineEdit"
+                                                                        name="minOutputValue_lineEdit"/>
+                                                            </item>
+                                                            <item row="1" column="0">
+                                                                <widget class="QLabel" name="maxOutputValue_label">
+                                                                    <property name="text">
+                                                                        <string>Max. value</string>
+                                                                    </property>
+                                                                </widget>
+                                                            </item>
+                                                            <item row="1" column="1">
+                                                                <widget class="QLineEdit"
+                                                                        name="maxOutputValue_lineEdit"/>
+                                                            </item>
+                                                        </layout>
+                                                    </widget>
+                                                </item>
+                                            </layout>
+                                        </widget>
+                                    </item>
+                                </layout>
+                            </widget>
+                        </item>
+                        <item>
+                            <widget class="QWidget" name="_resize_widget3" native="true">
+                                <property name="sizePolicy">
+                                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                            </widget>
+                        </item>
+                    </layout>
+                </widget>
+            </item>
+            <item>
+                <widget class="QWidget" name="_resize_widget2" native="true">
+                    <property name="sizePolicy">
+                        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                </widget>
+            </item>
+        </layout>
+    </widget>
+    <resources/>
+    <connections>
+        <connection>
+            <sender>selectOuptutRange_checkBox</sender>
+            <signal>toggled(bool)</signal>
+            <receiver>customOutputRange_widget</receiver>
+            <slot>setVisible(bool)</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>240</x>
+                    <y>251</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>206</x>
+                    <y>265</y>
+                </hint>
+            </hints>
+        </connection>
+        <connection>
+            <sender>selectCustomAverage_checkBox</sender>
+            <signal>toggled(bool)</signal>
+            <receiver>customAverage_widget</receiver>
+            <slot>setVisible(bool)</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>200</x>
+                    <y>80</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>185</x>
+                    <y>116</y>
+                </hint>
+            </hints>
+        </connection>
+        <connection>
+            <sender>selectInputRange_checkBox</sender>
+            <signal>toggled(bool)</signal>
+            <receiver>customInputRange_widget</receiver>
+            <slot>setVisible(bool)</slot>
+            <hints>
+                <hint type="sourcelabel">
+                    <x>208</x>
+                    <y>16</y>
+                </hint>
+                <hint type="destinationlabel">
+                    <x>242</x>
+                    <y>46</y>
+                </hint>
+            </hints>
+        </connection>
+    </connections>
+</ui>

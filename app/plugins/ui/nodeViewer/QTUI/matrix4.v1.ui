@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+    <class>MatrixViewer_form</class>
+    <widget class="QWidget" name="MatrixViewer_form">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>252</width>
+                <height>184</height>
+            </rect>
+        </property>
+        <property name="windowTitle">
+            <string>Form</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout" rowstretch="0,0,0" columnstretch="0,0,0,0">
+            <property name="sizeConstraint">
+                <enum>QLayout::SetMinAndMaxSize</enum>
+            </property>
+            <item row="0" column="0">
+                <widget class="QLineEdit" name="a00_lineEdit">
+                    <property name="inputMask">
+                        <string/>
+                    </property>
+                </widget>
+            </item>
+            <item row="0" column="1">
+                <widget class="QLineEdit" name="a01_lineEdit"/>
+            </item>
+            <item row="0" column="2">
+                <widget class="QLineEdit" name="a02_lineEdit"/>
+            </item>
+            <item row="0" column="3">
+                <widget class="QLineEdit" name="a03_lineEdit"/>
+            </item>
+            <item row="1" column="0">
+                <widget class="QLineEdit" name="a10_lineEdit"/>
+            </item>
+            <item row="1" column="1">
+                <widget class="QLineEdit" name="a11_lineEdit"/>
+            </item>
+            <item row="1" column="2">
+                <widget class="QLineEdit" name="a12_lineEdit"/>
+            </item>
+            <item row="1" column="3">
+                <widget class="QLineEdit" name="a13_lineEdit"/>
+            </item>
+            <item row="2" column="0">
+                <widget class="QLineEdit" name="a20_lineEdit"/>
+            </item>
+            <item row="2" column="1">
+                <widget class="QLineEdit" name="a21_lineEdit"/>
+            </item>
+            <item row="2" column="2">
+                <widget class="QLineEdit" name="a22_lineEdit"/>
+            </item>
+            <item row="2" column="3">
+                <widget class="QLineEdit" name="a23_lineEdit"/>
+            </item>
+        </layout>
+    </widget>
+    <resources/>
+    <connections/>
+</ui>
