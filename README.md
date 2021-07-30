@@ -47,7 +47,7 @@ To present our application functionality, we provide a sample project. It can be
 * Locate the sample project and open it.
 
 #### View an image
-* To view the image, select `ROI_RAW_test6.tif` in the `Scene Manager` pane
+* To view the image, select it in the `Scene Manager` pane, for example, you can choose `ROI_RAW_test6.tif`
 * In the upper menu, hover on `Image` > `Viewers` and click on `Basic Image 3D Viewer` 
 
 #### Segment an image
@@ -55,5 +55,12 @@ To present our application functionality, we provide a sample project. It can be
 * In the upper menu, hover on `Segmentation` > `Deep Learning` and click one of `M1` `M2` or `M3` (If no option shows when hovering over `Deep Learning`, the model folder has not been placed correctly, please check the installation instruction)
 * Click on the `Close when finished` checkbox from the progress prompt and wait for the process to finish
 * The segmented image has been added to the `Scene Manager` pane (`ROI_RAW_test6.tif (Seg: u_net3d_deep)`) and can be viewed following the steps from the previous section
+
+#### Edit a segmentation
+* To edit the segmentation, select `ROI_RAW_test6.tif` and `ROI_RAW_test6.tif (Seg: u_net3d_deep)`(or `ROI_LABEL_test6.tif` if you didn't perform the automatic segmentation) in the `Scene Manager` pane.
+* In the upper menu, hover over `Segmentation` and click on `Segmentation Editor`.
+* In the prompt, select the prediction image, `ROI_RAW_test6.tif (Seg: u_net3d_deep)` (or `ROI_LABEL_test6.tif` if you didn't perform the automatic segmentation), from the list. The segmentation editor will open.
+* The changes are stored in an automatically created image (`edition_ROI_RAW_test6.tif (Seg: u_net3d_deep)`), if you want to save the current work and continue it later, next time you will have
+ to open the editor with the 3 images selected: `ROI_RAW_test6.tif`, `ROI_RAW_test6.tif (Seg: u_net3d_deep)` and `edition_ROI_RAW_test6.tif (Seg: u_net3d_deep)`.
 
 
