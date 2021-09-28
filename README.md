@@ -63,4 +63,6 @@ To present our application functionality, we provide a sample project. It can be
 * The changes are stored in an automatically created image (`edition_ROI_RAW_test6.tif (Seg: u_net3d_deep)`), if you want to save the current work and continue it later, next time you will have
  to open the editor with the 3 images selected: `ROI_RAW_test6.tif`, `ROI_RAW_test6.tif (Seg: u_net3d_deep)` and `edition_ROI_RAW_test6.tif (Seg: u_net3d_deep)`.
 
+## Acknowledgments
+The authors gratefully acknowledges the computer resources at Artemisa, funded by the European Union ERDF and Comunitat Valenciana as well as the technical support provided by the Instituto de Física Corpuscular, IFIC (CSIC-UV).
 
