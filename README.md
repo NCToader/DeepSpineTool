@@ -66,3 +66,5 @@ To present our application functionality, we provide a sample project. It can be
 ## Acknowledgments
 The authors gratefully acknowledges the computer resources at Artemisa, funded by the European Union ERDF and Comunitat Valenciana as well as the technical support provided by the Instituto de Física Corpuscular, IFIC (CSIC-UV).
 
+## License 
+DeepSpineTool is distributed under a Dual License model, depending on its usage. For its non-commercial use, it is released under an open-source license (MIT). Please contact us if you are interested in commercial license.
