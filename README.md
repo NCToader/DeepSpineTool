@@ -1,8 +1,18 @@
 # DeepSpineTool
 This repository contains our GUI application for automatic spine segmentation and refinement. 
 
-## Installation
-Requires **Python 3.6.8 or later** and **CUDA 10.1** (to enable the use of GPUs to greatly reduce the automatic segmentation time. It can be used without CUDA on CPU, with a longer execution time.).
+## Installation for Windows 10
+We provide an executable ready to run in Windows 10. To have short segmentation times, we recommend running our application on a system with an NVIDIA GPU with at least 8 GB of VRAM. Otherwise, the segmentation process will be done on CPU and will be slower.
+To use this executable:
+1. Download `DeepSpineTool.zip` from https://bit.ly/2WlCiFc
+2. Extract the previous file
+3. Open the newly extracted folder and execute `DeepSpineNetTool.bat` 
+
+If you have a compatible GPU, please ensure that your GPU drivers are up-to-date.
+
+## Building and installation (any system)
+Our application can also be installed in any operating system that supports its dependencies. It requires **Python 3.6.8 or later** and **CUDA 10.1** (to enable the use of GPUs to greatly reduce the automatic segmentation time. It can be used without CUDA on CPU, with a longer execution time.).
+
 1. Download the current project:
    > git clone https://gitfront.io/r/user-4306573/cea608399c9a77e6a945a4cad004634422d13436/DeepSpineTool.git
 2. Install dependencies (from the root directory of the project):
@@ -19,28 +29,11 @@ After the previous steps, folder structure should be:
         * `M3`
      * ...
  
-## Installation for Windows 10
-The previous instructions can be used to run our application in any operating system that supports its dependencies. We also provide an executable ready to run in Windows 10.
-To use this executable:
-1. Download `DeepSpineTool executable win10.zip` from https://bit.ly/2WlCiFc
-2. Extract the previous file
-3. Download our models (`models.zip`) from https://bit.ly/2WlCiFc 
-4. Extract the previous file in `DeepSpineTool executable win10`
-
-After the previous steps, folder structure should be: 
- * `DeepSpineTool executable win10`
-     * `DeepSpineTool.exe`
-     * `models`
-        * `M1`
-        * `M2`
-        * `M3`
-     * ...
-
 ## Usage
 To present our application functionality, we provide a sample project. It can be downloaded from: https://bit.ly/2WlCiFc (`sample.scn`) 
 
 #### Running the application
-* To start the tool, use the following command (if using the executable: Open `DeepSpineTool.exe`):
+* To start the tool, use the following command (if using the executable: Open `DeepSpineTool.bat`):
     > python main.py
 
 * Once the main window appears, in the upper menu, open the sample project with  `Scene` > `Load` and accept the prompt message.
@@ -60,7 +53,12 @@ To present our application functionality, we provide a sample project. It can be
 * To edit the segmentation, select `ROI_RAW_test6.tif` and `ROI_RAW_test6.tif (Seg: u_net3d_deep)`(or `ROI_LABEL_test6.tif` if you didn't perform the automatic segmentation) in the `Scene Manager` pane.
 * In the upper menu, hover over `Segmentation` and click on `Segmentation Editor`.
 * In the prompt, select the prediction image, `ROI_RAW_test6.tif (Seg: u_net3d_deep)` (or `ROI_LABEL_test6.tif` if you didn't perform the automatic segmentation), from the list. The segmentation editor will open.
-* The changes are stored in an automatically created image (`edition_ROI_RAW_test6.tif (Seg: u_net3d_deep)`), if you want to save the current work and continue it later, next time you will have
+* Our app stores the changes in an automatically created image (`edition_ROI_RAW_test6.tif (Seg: u_net3d_deep)`), if you want to save the current work and continue it later, next time you will have
  to open the editor with the 3 images selected: `ROI_RAW_test6.tif`, `ROI_RAW_test6.tif (Seg: u_net3d_deep)` and `edition_ROI_RAW_test6.tif (Seg: u_net3d_deep)`.
 
 
+## Acknowledgments
+The authors gratefully acknowledges the computer resources at Artemisa, funded by the European Union ERDF and Comunitat Valenciana as well as the technical support provided by the Instituto de Física Corpuscular, IFIC (CSIC-UV).
+
+##License
+DeepSpineTool is distributed under a Dual License model, depending on its usage. For its non-commercial use, it is released under an open-source license (MIT). Please contact us if you are interested in commercial license.

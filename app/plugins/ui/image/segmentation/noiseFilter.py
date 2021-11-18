@@ -128,25 +128,31 @@ class NoiseFilterManager(Qt.QWidget):
         self.initImg = np.copy(newArray).astype(np.uint16)
 
     def removeCategorySmallerTreshold(self):
-        if int(self.minVol.text())==0:
+        minVol = float(self.minVol.text().replace(',','.'))
+        if minVol==0:
             return
         imgDendr = (self.showArray == 1)
         imgSpine = (self.showArray == 2)
+        tresholdInPixels = int(minVol/self.spacing[0]/self.spacing[1]/self.spacing[2])
+        print(tresholdInPixels)
         if self.editDendrites.isChecked():
-            imgDendr, _ = self.getElementsN(imgDendr, treshold=int(self.minVol.text()), returnImg=True)
+            imgDendr, _ = self.getElementsN(imgDendr, treshold=tresholdInPixels, returnImg=True)
             print('Pixeles dendrita ', np.count_nonzero(imgDendr), '\n')
         if self.editSpines.isChecked():
-            imgSpine, _ = self.getElementsN(imgSpine, treshold=int(self.minVol.text()), returnImg=True)
+            imgSpine, _ = self.getElementsN(imgSpine, treshold=tresholdInPixels, returnImg=True)
             print('Pixeles espina ', np.count_nonzero(imgSpine), '\n')
         mask = np.add(imgDendr, imgSpine).astype(bool)
         self.showArray= np.multiply(self.showArray, mask)
 
     def removeSpDistTreshold(self):
-        if int(self.minDist.text())==0:
+        minDist = float(self.minDist.text().replace(',', '.'))
+        if minDist==0:
             return
         imgDendr = (self.showArray==1)
-        if int(self.bigDendrVol.text())>0:
-            imgDendr = self.getElementsN(imgDendr, treshold=int(self.bigDendrVol.text()), returnImg=True)[0]
+        bigDendrVol = float(self.bigDendrVol.text().replace(',', '.'))
+        if bigDendrVol>0:
+            tresholdInPixels = int(bigDendrVol / self.spacing[0] / self.spacing[1] / self.spacing[2])
+            imgDendr = self.getElementsN(imgDendr, treshold=tresholdInPixels, returnImg=True)[0]
         imgDendr = np.invert(imgDendr.astype(bool))
         d = distance_transform_edt(imgDendr, sampling=self.spacing)
         dMask = [d < float(self.minDist.text())][0]

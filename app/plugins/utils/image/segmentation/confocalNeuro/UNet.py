@@ -1,11 +1,10 @@
 from typing import Union
 
 import tensorflow as tf
-print(tf.__version__)
 from tensorflow.python.keras import Model, Input
 from tensorflow.keras.layers import Conv3D, MaxPool3D, Dropout, Conv3DTranspose
 from tensorflow.keras.initializers import TruncatedNormal, VarianceScaling
-from tensorflow.keras.regularizers import L2
+from tensorflow.keras.regularizers import l2
 from tensorflow.python.keras.layers import PReLU
 
 from app.plugins.utils.segmentation.parser import YAMLConfig
@@ -42,9 +41,9 @@ class SegModel(Model):
             self.base_init = VarianceScaling()
 
         self.reg_init = None
-        if self.kernel_reg == 'L2':
+        if self.kernel_reg == 'l2':
             self.reg_factor = configuration.get_entry(['Network', 'reg_factor'])
-            self.reg_init = L2(l2=self.reg_factor)
+            self.reg_init = l2(l2=self.reg_factor)
 
         self.padding = 'same' if self.pad else 'valid'
         self.dropout = Dropout(rate=self.dropout_prob)
@@ -424,8 +423,8 @@ class VNet(SegModel):
         elif self.kernel_init == 'He':
             self.base_init = VarianceScaling()
 
-        if self.kernel_reg == 'L2':
-            self.reg_init = L2(l2=0.1)
+        if self.kernel_reg == 'l2':
+            self.reg_init = l2(l2=0.1)
 
         self.padding = 'same' if self.pad else 'valid'
         self.dropout = Dropout(rate=self.dropout_prob)

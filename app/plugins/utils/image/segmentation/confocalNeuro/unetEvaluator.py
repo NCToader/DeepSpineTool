@@ -13,116 +13,64 @@ https://stackoverflow.com/questions/33759623/tensorflow-how-to-save-restore-a-mo
 https://cv-tricks.com/tensorflow-tutorial/save-restore-tensorflow-models-quick-complete-tutorial/
 https://stackabuse.com/tensorflow-save-and-restore-models/
 """
+import threading
 
-import os
-from pathlib import Path
-import csv
-import math
-from pathlib import Path
-
-# import cv2
-from skimage import io, util
-import tensorflow as tf
-
-print(tf.__version__)
 from tensorflow.python.keras import Model
 from tqdm import tqdm
-
-import os
-
-import math
 from pathlib import Path
-from shutil import copyfile
-
 from tensorflow.keras import mixed_precision
-
 from app.plugins.utils.segmentation.parser import YAMLConfig
 from app.plugins.utils.image.segmentation.confocalNeuro.UNet import UNet3D, UNet3DDeep, VNet
+from tensorflow.python.client import device_lib as tfDevLib
+from app.core.utils import SingletonDecorator
+import math
 import tensorflow as tf
 import numpy as np
 import random
-import argparse
 
 models_path = Path(__file__).parent.parent.parent.parent.parent.parent.parent / 'models'
 
-try:
-    import tensorflow.compat.v1 as tf
-
-    tfVer = 2
-except:
-    import tensorflow as tf
-
-    tfVer = 1
-
-from tensorflow.python.client import device_lib as tfDevLib
-
-from app.core.utils import SingletonDecorator
-
 
 # https://www.tensorflow.org/guide/gpu
-def init(findCompatibleDevice=True,
-         device=None,
-         device_count=None,
-         log_device_placement=True,
-         allow_soft_placement=True,
-         gpu_options_allow_growth=True):
-    if tfVer == 2:
-        tf.disable_v2_behavior()
 
-    tfconfig = tf.ConfigProto(device_count=device_count)
-    tfconfig.log_device_placement = log_device_placement
-    tfconfig.allow_soft_placement = allow_soft_placement
-    tfconfig.gpu_options.allow_growth = gpu_options_allow_growth
+def set_seg_device(gpu_min_memory=6500):
+    devList = tfDevLib.list_local_devices()
+    last_gpu_ram = 0
+    found_gpu = False
+    found_gpu_with_enough_ram = False
 
-    UnetModelManager().defaultTFConfig = tfconfig
-    UnetModelManager().defaultDevice = device
+    for x in devList:
+        gpu_memory = int(x.memory_limit) / 1024 / 1024
+        enough_ram = gpu_memory > gpu_min_memory
 
-    if findCompatibleDevice is not None:
-        devList = tfDevLib.list_local_devices()
+        if x.device_type == 'GPU':
+            print('Found GPU: {} with {} MB of RAM, this device has {} RAM for the segmentation module.'
+                  ''.format(x.name, gpu_memory, 'enough' if enough_ram else 'not enough'))
 
-        gpuMemoryLimit = 0
-        gpuCudaMajor = 0
-        gpuCudaMinor = 0
-        gpuName = ""
+            found_gpu = True
+            if gpu_memory > last_gpu_ram and enough_ram:
+                UnetModelManager().GPU = x.name
+                last_gpu_ram = gpu_memory
+                found_gpu_with_enough_ram = True
 
-        for x in devList:
-            print("\nDevice:")
-            print(x)
-            if x.device_type == 'GPU':
-                p = x.physical_device_desc.find("capability:")
-                mj, mn = x.physical_device_desc[p + 12:].split('.')
-                mj = int(mj)
-                mn = int(mn)
-                if mj > gpuCudaMajor:
-                    gpuCudaMajor = mj
-                    gpuCudaMinor = mn
-                    gpuName = x.name
-                    gpuMemoryLimit = int(x.memory_limit)
-                elif (mj == gpuCudaMajor):
-                    if mn > gpuCudaMinor:
-                        gpuCudaMinor = mn
-                        gpuName = x.name
-                        gpuMemoryLimit = int(x.memory_limit)
-                    elif mn == gpuCudaMinor:
-                        if gpuMemoryLimit < int(x.memory_limit):
-                            gpuName = x.name
-                            gpuMemoryLimit = int(x.memory_limit)
+    if not found_gpu:
+        print('No GPU found, CPU will be used for the segmentation module.')
+    elif not found_gpu_with_enough_ram:
+        print('Found GPU, but it has not enough RAM to support our DL models, CPU will be used for the segmentation module.')
 
-        UnetModelManager().defaultDevice = "/device:CPU:0" if gpuName == "" \
-            else gpuName
 
-    print("\nDevice selected:", gpuName)
+    UnetModelManager().CPU = tf.config.list_logical_devices('CPU')[0].name
+
+
+
+    return found_gpu_with_enough_ram, found_gpu
 
 
 @SingletonDecorator
 class UnetModelManager:
     def __init__(self):
-        self._tfconfig = tf.ConfigProto()
-        self._tfconfig.log_device_placement = True
-        self._tfconfig.allow_soft_placement = True
-        self._tfconfig.gpu_options.allow_growth = True
-
-        self._device = None
+        self._GPU = None
+        self._CPU = None
 
         self._modelDict = dict()
         for file in models_path.glob('*'):
@@ -153,17 +101,31 @@ class UnetModelManager:
         self._tfconfig = value
 
     @property
-    def defaultDevice(self):
-        return self._device
+    def CPU(self):
+        return self._CPU
 
-    @defaultDevice.setter
-    def defaultDevice(self, value):
-        self._device = value
+    @CPU.setter
+    def CPU(self, value):
+        self._CPU = value
+
+    @property
+    def GPU(self):
+        return self._GPU
+
+    @GPU.setter
+    def GPU(self, value):
+        self._GPU = value
 
 
-class UnetEvaluator():
+class UnetEvaluator:
     def __init__(self, modelName=None, img=None):
         self._mm = UnetModelManager()
+
+        if self._mm.GPU is not None:
+            self.device = self._mm.GPU
+        else:
+            self.device = self._mm.CPU
+
         config_file_path = self._mm.getModel(modelName)
         self.config = YAMLConfig(config_file_path)
 
@@ -171,7 +133,6 @@ class UnetEvaluator():
         self.model_weight_path = str(config_file_path.parent) + "/"
 
         self.img = img
-
 
     def get_model(self, configuration):
         network_type = configuration.get_entry(['Network', 'type'], False) or '3DUNetDeep'
@@ -239,18 +200,22 @@ class UnetEvaluator():
     def infer(self):
         seed = self.config.get_entry(['Training', 'seed'])
         # Seeds for reproducibility
-        tf.random.set_random_seed(seed)
+        tf.random.set_seed(seed)
         np.random.seed(seed)
         random.seed(seed)
+        tf.random.set_global_generator = tf.random.Generator.from_seed(seed)
         # Parse the configuration file
         use_mixed_precision = self.config.get_entry(['Network', 'mixed_precision'])
         if use_mixed_precision:
             mixed_precision.experimental.set_policy('mixed_float16')
         model_load_path = self.model_weight_path
-        self._model.load_weights(model_load_path)
+        self._model.load_weights(model_load_path).expect_partial()
         print('Loaded saved model from {}'.format(model_load_path))
         trainer = Tester(self.config, self._model)
-        self.pred = trainer.infer(self.img)
+        with tf.device(self.device):
+            for progress in trainer.infer(self.img):
+                yield progress
+        self.pred = trainer.prediction_img
 
 
 class Tester:
@@ -268,8 +233,10 @@ class Tester:
         self.model = model
 
     def infer(self, image_stack):
-        image_stack = image_stack / 4095
-        # image_stack = np.transpose(image_stack, axes=[1, 2, 0])
+        image_stack = image_stack.astype(np.float32)
+        image_stack -= image_stack.mean()
+        image_stack /= image_stack.std()
+        print('Callback, in thread %s' % threading.current_thread().name)
 
         input_height = self.input_size
         input_width = self.input_size
@@ -312,18 +279,103 @@ class Tester:
 
         iterator = tqdm(zip(start_output_idx, end_output_idx, start_input_idx, end_input_idx),
                         total=start_output_idx.shape[0])
-        # for i, (soi, eoi, sii, eii) in enumerate(iterator):
-        #     image_patch = padded_img[sii[0]:eii[0], sii[1]:eii[1], sii[2]:eii[2]]
-        #     prediction_img[soi[0]:eoi[0], soi[1]:eoi[1], soi[2]:eoi[2]] = self.model.test_iteration(
-        #         image_patch[None, :, :, :, None])[0, :, :, :, 0]
 
         for i, (soi, eoi, sii, eii) in enumerate(iterator):
             image_patch = padded_img[sii[0]:eii[0], sii[1]:eii[1], sii[2]:eii[2]]
             prediction_img[soi[0]:eoi[0], soi[1]:eoi[1], soi[2]:eoi[2]] = self.model.test_iteration(
                 image_patch[None, :, :, :, None])[0, :, :, :, 0]
 
+            yield 100 * i / (start_output_idx.shape[0] - 1)
+
         prediction_img = prediction_img[padding_t: padding_t + height, padding_l: padding_l + width,
                          padding_s:padding_s + channels]
         prediction_img = np.rollaxis(prediction_img, -1, 0)
 
-        return prediction_img
+        self.prediction_img = prediction_img
+
+    def dense_infer(self, image_stack):
+        image_stack = image_stack / image_stack.max()
+
+        input_height = self.input_size
+        input_width = self.input_size
+        input_depth = self.input_d
+        output_height = self.output_size
+        output_width = self.output_size
+        output_channels = self.output_d
+
+        height, width, channels = image_stack.shape
+        padding_l = int((input_width - output_width) / 2)
+        padding_t = int((input_height - output_height) / 2)
+        padding_r = int((input_width - output_width) / 2)
+        padding_b = int((input_height - output_height) / 2)
+        padding_s = int(math.ceil((input_depth - output_channels) / 2))
+        padding_e = int(math.ceil((input_depth - output_channels) / 2))
+
+        padding_ll = int((output_width / 2) / 2)
+        padding_tt = int((output_height / 2) / 2)
+        padding_rr = int((output_width / 2) / 2)
+        padding_bb = int((output_height / 2) / 2)
+        padding_ss = int((output_channels / 2) / 2)
+        padding_ee = int((output_channels / 2) / 2)
+
+        crop_output_size = self.output_size - padding_ll - padding_rr
+        crop_d = self.output_d - padding_ss - padding_ee
+
+        padded_width = width + padding_l + padding_r + padding_ll + padding_rr
+        padded_height = height + padding_t + padding_b + padding_tt + padding_bb
+        padded_channels = channels + padding_s + padding_e + padding_ss + padding_ee
+        padded_img = np.pad(image_stack, [(padding_t + padding_tt, padding_b + padding_bb),
+                                          (padding_l + padding_ll, padding_r + padding_rr),
+                                          (padding_s + padding_ss, padding_e + padding_ee)],
+                            mode='constant')
+
+        start_w_index = np.array(list(
+            range(padding_l + padding_ll,
+                  padded_width - padding_r - padding_rr - self.output_size + padding_ll + padding_rr,
+                  self.output_size - padding_ll - padding_rr)) + [
+                                     padded_width - padding_r - padding_rr - self.output_size + padding_ll + padding_rr])
+        start_h_index = np.array(list(
+            range(padding_t + padding_tt,
+                  padded_height - padding_b - padding_bb - self.output_size + padding_tt + padding_bb,
+                  self.output_size - padding_tt - padding_bb)) + [
+                                     padded_height - padding_b - padding_bb - self.output_size + padding_tt + padding_bb])
+        start_c_index = np.array(list(
+            range(padding_s + padding_ss,
+                  padded_channels - padding_e - padding_ee - self.output_d + padding_ee + padding_ss,
+                  self.output_d - padding_ss - padding_ee)) + [
+                                     padded_channels - padding_e - padding_ee - self.output_d + padding_ee + padding_ss])
+
+        rows_idx = np.tile(np.repeat(start_h_index, start_w_index.shape[0]), start_c_index.shape[0])
+        cols_idx = np.tile(start_w_index, start_h_index.shape[0] * start_c_index.shape[0])
+        channels_idx = np.repeat(start_c_index, start_w_index.shape[0] * start_h_index.shape[0])
+
+        start_output_crop_idx = np.array(list(zip(rows_idx, cols_idx, channels_idx)))
+        end_output_crop_idx = start_output_crop_idx + [self.output_size - padding_tt - padding_bb,
+                                                       self.output_size - padding_ll - padding_rr,
+                                                       self.output_d - padding_ss - padding_ee]
+        start_output_idx = start_output_crop_idx - [padding_tt, padding_ll, padding_ss]
+        end_output_idx = start_output_idx + [self.output_size, self.output_size, self.output_d]
+        start_input_idx = start_output_idx - [padding_t, padding_l, padding_s]
+        end_input_idx = start_input_idx + [self.input_size, self.input_size, self.input_d]
+
+        prediction_img = np.zeros_like(padded_img)
+
+        iterator = tqdm(
+            zip(start_output_crop_idx, end_output_crop_idx, start_output_idx, end_output_idx, start_input_idx,
+                end_input_idx),
+            total=start_output_crop_idx.shape[0])
+
+        for i, (soci, eoci, soi, eoi, sii, eii) in enumerate(iterator):
+            image_patch = padded_img[sii[0]:eii[0], sii[1]:eii[1], sii[2]:eii[2]]
+            prediction_img[soci[0]:eoci[0], soci[1]:eoci[1], soci[2]:eoci[2]] = self.model.test_iteration(
+                image_patch[None, :, :, :, None])[0, padding_tt:padding_tt + crop_output_size,
+                                                                                padding_ll:padding_ll + crop_output_size,
+                                                                                padding_ss:padding_ss + crop_d, 0]
+            yield 100 * i / (start_output_crop_idx.shape[0] - 1)
+
+        prediction_img = prediction_img[padding_t + padding_tt: padding_t + padding_tt + height,
+                         padding_l + padding_ll: padding_l + padding_ll + width,
+                         padding_s + padding_ss:padding_s + padding_ss + channels]
+        prediction_img = np.rollaxis(prediction_img, -1, 0)
+
+        self.prediction_img = prediction_img

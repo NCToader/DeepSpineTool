@@ -4,7 +4,7 @@ import numpy as np
 
 class CustomDialog(Qt.QDialog):
 
-    def __init__(self, nodes, imageTypes, *args, **kwargs):
+    def  __init__(self, nodes, imageTypes, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._mw = MW.MainWindow()
         self.setWindowTitle("Choose corresponding images")

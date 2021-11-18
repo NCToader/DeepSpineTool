@@ -17,11 +17,12 @@ from app.plugins.utils.image.segmentation import \
 
 @SingletonDecorator
 class DLSegmentationManager:
-    def __init__(self, menuPath=None):
+    def __init__(self, menuPath=None, hasSupportedGPU=False, hasGPU=False):
         self._mw = mw.MainWindow()
         self._smUI = scm.SceneManagerUI()
         self._sc = sc.Scene()
-
+        self._hasSupportedGPU = hasSupportedGPU
+        self._hasGPU = hasGPU
         self._menuPath = \
             ["Segmentation", "Deep Learning"] if menuPath is None else menuPath
         self._menuRoot = self._mw.createMenu(menuPath=self._menuPath)
@@ -49,10 +50,21 @@ class DLSegmentationManager:
                 title = "Segmenting image set..."
             else:
                 title = "Segmenting image set using " + modelName + "..."
-            self._mw.processDialog(
-                lambda: self._processNodeList(nodes, modelName), True,
-                title=title,
-                closeOnFinished=False)
+
+            gpu_message = ""
+            if not self._hasSupportedGPU and self._hasGPU:
+                gpu_message = 'Your GPU does not have enough RAM for our models'
+            elif not self._hasGPU:
+                gpu_message = 'No GPU detected'
+
+            msg = "{}, deep learning segmentation will be run on CPU, which will be slower." \
+                  " Are you sure you want to continue?".format(gpu_message)
+
+            if self._hasSupportedGPU or (not self._hasSupportedGPU and self._mw.confirmMsg(msg)):
+                self._mw.processDialog(
+                    lambda: self._processNodeList(nodes, modelName), True,
+                    title=title,
+                    closeOnFinished=False)
 
     def _processNodeList(self, nodes, modelName):
         print("Loading model:", modelName)
@@ -65,7 +77,7 @@ class DLSegmentationManager:
         progressInc = 100 // nNodes
 
         for i, n in enumerate(nodes):
-            progressOffset = i * 100 // nNodes
+            progressOffset = i * progressInc
             print("Segmenting {}.(Img {} out of {})".
                   format(n.name, 1 + i, nNodes))
 
@@ -74,8 +86,8 @@ class DLSegmentationManager:
             #     lanzar una excepción
             print("Preparing image")
             model.img = n.img
-            model.infer()
-
+            for progress in model.infer():
+                yield int(progressOffset + ((progress * progressInc) / 100))
 
             if model.prediction is None:
                 raise ValueError("Segmenting error")
@@ -88,6 +100,5 @@ class DLSegmentationManager:
         yield 100
 
 
-
-def init(menuPath=None):
-    DLSegmentationManager(menuPath=menuPath)
+def init(menuPath=None, hasSupportedGPU=False, hasGPU=False):
+    DLSegmentationManager(menuPath=menuPath, hasSupportedGPU=hasSupportedGPU, hasGPU=hasGPU)

@@ -72,8 +72,8 @@ def run():
     segComp.init()
     nFilt.init()
 
-    sg.initUnet
-    sgui.initCNDL()
+    hasSupportedGPU, hasGPU = sg.initUnet()
+    sgui.initCNDL(None, hasSupportedGPU, hasGPU)
 
     # =============================================================================
     #  Ventana principal

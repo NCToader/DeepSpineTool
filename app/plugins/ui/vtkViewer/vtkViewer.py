@@ -1,6 +1,11 @@
 import vtk
 from PyQt5 import Qt
+import vtkmodules.vtkInteractionStyle
+import vtkmodules.vtkRenderingOpenGL2
 from vtkmodules.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
+from vtkmodules.vtkRenderingAnnotation import vtkAxesActor
+from vtkmodules.vtkInteractionWidgets import vtkOrientationMarkerWidget
+from vtkmodules.vtkCommonColor import vtkNamedColors
 
 from app.core.model import scene as SC
 from app.plugins.model.meshNode.meshNode import MeshNode
@@ -96,6 +101,18 @@ class VtkViewer(Qt.QMainWindow, Ui_VTKViewer):
         self.vtk_widget.GetRenderWindow().AddRenderer(self.ren)
         self.interactor = self.vtk_widget.GetRenderWindow().GetInteractor()
 
+        axes = vtkAxesActor()
+        colors = vtkNamedColors()
+        widget = vtkOrientationMarkerWidget()
+        rgba = [0] * 4
+        colors.GetColor('Carrot', rgba)
+        widget.SetOutlineColor(rgba[0], rgba[1], rgba[2])
+        widget.SetOrientationMarker(axes)
+        widget.SetInteractor(self.interactor)
+        widget.SetViewport(0.0, 0.0, 0.4, 0.4)
+        widget.SetEnabled(1)
+        widget.InteractiveOn()
+
         self.ren.ResetCamera()
 
         self.interactor.SetInteractorStyle(vtk.vtkInteractorStyleTrackballCamera())
@@ -103,6 +120,13 @@ class VtkViewer(Qt.QMainWindow, Ui_VTKViewer):
         self.interactor.Start()
 
     def meshNode2actor(self, node):
+        # plane = vtk.vtkPlane()
+        # plane.SetOrigin(0, 70, 0)
+        # plane.SetNormal(0, 1, 0)
+        # plane2 = vtk.vtkPlane()
+        # plane2.SetOrigin(0, 0, 4)
+        # plane2.SetNormal(0, 0, 1)
+
         points = vtk.vtkPoints()
         triangles = vtk.vtkCellArray()
         for i, tri in enumerate(node.indices):
@@ -124,9 +148,11 @@ class VtkViewer(Qt.QMainWindow, Ui_VTKViewer):
         poly_data.SetPolys(triangles)
         mapper = vtk.vtkDataSetMapper()
         mapper.SetInputData(poly_data)
+        # mapper.AddClippingPlane(plane)
+        # mapper.AddClippingPlane(plane2)
         actor = vtk.vtkActor()
         actor.SetMapper(mapper)
-        actor.GetProperty().SetColor(0.5, 0.5, 1.0)
+        actor.GetProperty().SetColor(1.0, 0.5, 0.5)
 
         self.ren.AddActor(actor)
         self._activeActors[node.name] = actor
@@ -160,12 +186,13 @@ class VtkViewer(Qt.QMainWindow, Ui_VTKViewer):
         color_func.AddRGBPoint(2, 0.0, 1, 0.0)  # Green
 
         opacity = vtk.vtkPiecewiseFunction()
+
         volume_property = vtk.vtkVolumeProperty()
         # set the color for volumes
         volume_property.SetColor(color_func)
         # To add black as background of Volume
         volume_property.SetScalarOpacity(opacity)
-        volume_property.SetInterpolationTypeToLinear()
+        volume_property.SetInterpolationTypeToNearest()
         volume_property.SetIndependentComponents(2)
 
         # Ray cast function know how to render the data
@@ -179,8 +206,49 @@ class VtkViewer(Qt.QMainWindow, Ui_VTKViewer):
         volume.SetProperty(volume_property)
         return volume
 
+    def addTiffClippingPlane(self, data):
+        plane = vtk.vtkPlane()
+        plane.SetOrigin(0, 70, 0)
+        plane.SetNormal(0, 1, 0)
+        plane2 = vtk.vtkPlane()
+        plane2.SetOrigin(0, 0, 4)
+        plane2.SetNormal(0, 0, 1)
+
+        volume_mapper = vtk.vtkOpenGLGPUVolumeRayCastMapper()
+        volume_mapper.SetInputConnection(data.GetOutputPort())
+        volume_mapper.AddClippingPlane(plane)
+        volume_mapper.AddClippingPlane(plane2)
+        volume_mapper.SetBlendModeToComposite()
+
+        color_func = vtk.vtkColorTransferFunction()
+
+        # 2. Filter --&gt; Setting the color mapper, Opacity for VolumeProperty
+        color_func.AddRGBPoint(1, 0, 1.0, 0.5)  # Green
+
+        # To set different colored pores
+        color_func.AddRGBPoint(2, 0.0, 0.5, 1.0)  # Blue
+
+        opacity = vtk.vtkPiecewiseFunction()
+        opacity.AddPoint(0,0)
+        opacity.AddPoint(1, 1)
+        opacity.AddPoint(2, 1)
+        volume_property = vtk.vtkVolumeProperty()
+        # set the color for volumes
+        volume_property.SetColor(color_func)
+        # To add black as background of Volume
+        volume_property.SetScalarOpacity(opacity)
+        volume_property.SetInterpolationTypeToNearest()
+        volume_property.SetIndependentComponents(2)
+
+        volume = vtk.vtkVolume()
+        volume.SetMapper(volume_mapper)
+        volume.SetProperty(volume_property)
+
+        return volume
+
     def imageNode2actor(self, node):
         volume = self.addTiffToRender(self.numpy_to_vtk(node.img))
+        #volume = self.addTiffClippingPlane(self.numpy_to_vtk(node.img))
         self.ren.AddVolume(volume)
         self._activeActors[node.name] = volume
         self.render()

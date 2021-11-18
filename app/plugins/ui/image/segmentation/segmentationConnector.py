@@ -18,6 +18,10 @@ from matplotlib.widgets import RectangleSelector
 import matplotlib.pyplot as plt
 from app.plugins.ui.image.segmentation.customDialog import CustomDialog
 
+import vtkmodules
+print(vtkmodules.__file__)
+
+
 class SegmentationManager(Qt.QWidget):
 
     def __init__(self, rawViewer, segViewer, elementsImageNode=None, *args, **kwargs):
@@ -345,8 +349,6 @@ class SegmentationManager(Qt.QWidget):
         _, ndendrites = self.getConnectedElements(aux_array, self.diagonalsConnected)
         aux_array[self.labelsList[1]['elements_array'] == spine_id] = 1  # le añades al array de dendritas los pixeles donde se encuentra esta espina
         labeled, ncomponents = self.getConnectedElements(aux_array, self.diagonalsConnected)
-        plt.imshow(np.max(aux_array, axis=0))
-        plt.show()
         if ncomponents > ndendrites:
             aux_string = 'Disconnected'
         else:
@@ -464,12 +466,12 @@ class SegmentationManager(Qt.QWidget):
             self.slices = idxAABB(mn, mx)
             auxImg = np.multiply(self.segmentationImg[self.slices], subImg[self.slices])
             old_ids = []
-            if np.unique(auxImg).size>1:
+            if np.unique(self.removeZeroValues(auxImg)).size>0:
                 if new_label ==0:
                     old_label=1
                 else:
                     old_label = 0
-            else:
+            else: #asume que es fondo
                 old_label =-1
 
 
