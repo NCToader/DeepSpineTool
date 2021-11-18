@@ -33,7 +33,7 @@ After the previous steps, folder structure should be:
 To present our application functionality, we provide a sample project. It can be downloaded from: https://bit.ly/3nu6idf (`sample.scn`) 
 
 #### Running the application
-* To start the tool, use the following command (if using the executable: Open `DeepSpineTool.bat`):
+* To start the tool, use the following command (if using the executable: Open `DeepSpineNetTool.bat`):
     > python main.py
 
 * Once the main window appears, in the upper menu, open the sample project with  `Scene` > `Load` and accept the prompt message.
