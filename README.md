@@ -4,7 +4,7 @@ This repository contains our GUI application for automatic spine segmentation an
 ## Installation for Windows 10
 We provide an executable ready to run in Windows 10. To have short segmentation times, we recommend running our application on a system with an NVIDIA GPU with at least 8 GB of VRAM. Otherwise, the segmentation process will be done on CPU and will be slower.
 To use this executable:
-1. Download `DeepSpineNetTool.zip` from https://bit.ly/3oEOZFQ
+1. Download `DeepSpineNetTool.zip` from https://bit.ly/3usWxyv
 2. Extract the previous file
 3. Open the newly extracted folder and execute `DeepSpineNetTool.bat` 
 
@@ -17,7 +17,7 @@ Our application can also be installed in any operating system that supports its 
    > git clone https://gitfront.io/r/user-4306573/cea608399c9a77e6a945a4cad004634422d13436/DeepSpineTool.git
 2. Install dependencies (from the root directory of the project):
    > pip install -r requirements.txt.
-3. Download our models (`models.zip`) from https://bit.ly/3Dvf2p4
+3. Download our models (`models.zip`) from https://bit.ly/3usWxyv
 4. Extract the previous file in the root folder of the project. 
 
 After the previous steps, folder structure should be:
@@ -30,7 +30,7 @@ After the previous steps, folder structure should be:
      * ...
  
 ## Usage
-To present our application functionality, we provide a sample project. It can be downloaded from: https://bit.ly/3nu6idf (`sample.scn`) 
+To present our application functionality, we provide a sample project. It can be downloaded from: https://bit.ly/3usWxyv (`sample.scn`) 
 
 #### Running the application
 * To start the tool, use the following command (if using the executable: Open `DeepSpineNetTool.bat`):
